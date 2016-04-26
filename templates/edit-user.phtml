@@ -23,7 +23,8 @@
     <head>
         <meta charset="utf-8">
         
-        <title>Pagina principal</title>
+        <title>Create new user</title>
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
         <style>
             table, td, th {
                 border: 1px solid black;
@@ -53,7 +54,20 @@
                 text-transform: uppercase;
                 
             }
-        </style>
+            .form-control{
+                width: 96%;
+                padding:10px;
+                margin-bottom: 10px;
+            }
+            .form-button{
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-style: none;
+                text-transform: uppercase;
+                
+            }
+        </style> 
     </head>
     <body>
         <header class="header">
@@ -65,25 +79,24 @@
         </header>
         
         <main>
+            
             <div class="body">
-            <h3>List of users</h3>
-            <table>
-                <tr>
-                    <th>#</th>
-                    <th>First name</th>
-                    <th>Last name</th>
-                    <th>Actions</th>
-                    
-                    
-                </tr>
-            <?PHP
-            foreach ($data as $person)
-            {
-                echo'<tr><td>'.$person->id.'</td><td>'.$person->f_name.'</td><td>'.$person->l_name.'</td><td><a href="http://localhost/fabrica/edit/'.$person->id.'">Edit</a> <a href="http://localhost/fabrica/delete/'.$person->id.'">Delete</a> </td></tr>';
-            }
-            ?>
-            </table>
+                <h3>Edit data of user</h3>
+               <?php
+                foreach($data as $person)
+                {
+               ?> 
+               <form method="post" action="http://localhost/fabrica/edit-user">
+                   <input type="hidden" name="id" class="form-control" value="<?php echo $person->id?>">
+                   <input type="text" name="fname" class="form-control" value="<?php echo $person->f_name?>" placeholder="Firt name">
+                   <input type="text" name="lname" class="form-control" value="<?php echo $person->l_name?>" placeholder="Last name">
+                   <button class="form-button">Edit</button>
+               </form>
+               <?php
+                }
+               ?>
             </div>
+            
         </main>
         
         <footer>

@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 use App\Model\Model;
-use App\View\View;
+//use App\View\View;
 use App\Controller\Sessions;
 
 class Controller
@@ -19,22 +19,30 @@ class Controller
     {
          $model = new Model;
         
-         return $model->getData();
+         return $model->db_read('t_artinov');
         
     }
     
-    public function select_user($data,$param)
+    public function delete($param)
     {
          $model = new Model;
         
-         return $model->getData();
+         return $model->db_delete('t_artinov',$param);
         
     }
-    public function update($data,$param)
+    
+    public function select_user($id)
     {
          $model = new Model;
         
-         return $model->update($data,$param);
+         return $model->db_read('t_artinov', "WHERE id = $id", "*");
+        
+    }
+    public function update($data,$id)
+    {
+         $model = new Model;
+        
+         return $model->db_update('t_artinov',$data,"id = $id");
         
     }
     
