@@ -1,0 +1,47 @@
+<?PHP
+    
+    use App\Controller\Sessions;
+    
+    $sessao = new Sessions();
+    $sessao->start();
+    $user = $sessao->getValue('USER');
+    
+    if(isset($_GET['acao']) && isset($_GET['acao'])=='sair')
+    {
+        $sessao->deleteValue('USER');
+        $sessao->destroy();   
+    }
+    if(!$sessao->getValue('USER'))
+    { 
+        echo'<script>window.location="http://localhost/fabrica/";</script>';
+        end();
+    }
+       
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        
+        <title>Pagina principal</title>
+    </head>
+    <body>
+        <header>
+            <h1>Admin area</h1>
+            <?php 
+             echo'<h3> Hi! '.ucfirst($user).' <a href="?acao=sair">Logout</a></h3>';
+            ?>
+            
+        </header>
+        
+        <main>
+            <h3>List of users</h3>
+            <?PHP
+                echo $data;
+            ?>
+        </main>
+        
+        <footer>
+        </footer>
+    </body>
+</html>

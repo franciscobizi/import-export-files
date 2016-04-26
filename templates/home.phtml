@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        
+        <title>Pagina principal</title>
+        <style>
+            .header{
+                width: 100%;
+                padding-top: 50px;
+                text-align: center;
+                text-transform: uppercase;
+                
+            }
+            .body{
+                width: 50%;
+                padding: 10px 10px 10px 10px;
+                border: 1px #6cb6ff solid; 
+                border-radius: 8px 8px 8px 8px;
+                margin: auto;
+                    
+            }
+            .form-control{
+                width: 96%;
+                padding:10px;
+                margin-bottom: 10px;
+            }
+            .form-button{
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-style: none;
+                text-transform: uppercase;
+                
+            }
+            .error{
+                text-align: center;
+                color: brown;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="header">
+            <h1>Admin panel</h1>
+            </div>
+        </header>
+        
+        <main>
+           <div class="body">
+               <form method="post" action="http://localhost/fabrica/securit">
+                   <input type="text" name="user" class="form-control" placeholder="Username">
+                   <input type="password" name="pass" class="form-control" placeholder="Userpassword">
+                   <button class="form-button">Login</button>
+               </form>
+               <span class="error">
+               <?PHP
+                if(isset($name))
+                echo $name;
+               ?>
+               </span>
+            </div>
+        </main>
+        
+        <footer>
+        </footer>
+    </body>
+</html>
