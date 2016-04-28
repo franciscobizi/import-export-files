@@ -25,10 +25,46 @@
         
         <title>Create new user</title>
         <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <style>
+                   .header{
+                width: 100%;
+                padding-top: 50px;
+                text-align: center;
+                text-transform: uppercase;
+                
+            }
+            .body{
+                width: 50%;
+                padding: 10px 10px 10px 10px;
+                border: 1px #6cb6ff solid; 
+                border-radius: 8px 8px 8px 8px;
+                margin: auto;
+                    
+            }
+            .form-control{
+                width: 96%;
+                padding:10px;
+                margin-bottom: 10px;
+            }
+            .form-button{
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-style: none;
+                text-transform: uppercase;
+                
+            }
+            .error{
+                text-align: center;
+                color: brown;
+                font-weight: bold;
+            }
+
+        </style>
          
     </head>
     <body>
-        <header>
+        <header class="header">
             <h1>Admin area</h1>
             <?php 
              echo'<h3> Hi! '.ucfirst($user).' <a href="?acao=sair">Logout</a></h3>';
@@ -37,8 +73,9 @@
         </header>
         
         <main>
-            <h3>Create new user</h3>
+           
             <div class="body">
+                 <h3>Create new user</h3>
                <form method="post" action="http://localhost/fabrica/create">
                    <input type="text" name="fname" class="form-control" placeholder="Firt name">
                    <input type="text" name="lname" class="form-control" placeholder="Last name">

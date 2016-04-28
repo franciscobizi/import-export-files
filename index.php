@@ -19,7 +19,7 @@ $container['view'] = function ($container) {
  */
 $app->get('/', function ($request, $response) {
     
-    return $this->view->render($response, 'home.phtml');
+    return $this->view->render($response, 'home.php');
 });
 /*
  * Securit validation
@@ -39,6 +39,10 @@ $app->post('/securit', function($request, $response) {
 $app->get('/users', function ($request, $response) {
     
     return $this->view->render($response, 'users.phtml');
+});
+$app->get('/profile', function ($request, $response) {
+    
+    return $this->view->render($response, 'profile.php');
 });
 /*
  * List of uses

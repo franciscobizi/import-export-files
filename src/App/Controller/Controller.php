@@ -50,7 +50,7 @@ class Controller
     {
          $model = new Model;
         
-         return $model->create($data);
+         return $model->db_create('t_artinov',$data);
         
     }
     
