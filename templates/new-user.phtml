@@ -20,75 +20,71 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        
-        <title>Create new user</title>
-        <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <style>
-                   .header{
-                width: 100%;
-                padding-top: 50px;
-                text-align: center;
-                text-transform: uppercase;
-                
-            }
-            .body{
-                width: 50%;
-                padding: 10px 10px 10px 10px;
-                border: 1px #6cb6ff solid; 
-                border-radius: 8px 8px 8px 8px;
-                margin: auto;
-                    
-            }
-            .form-control{
-                width: 96%;
-                padding:10px;
-                margin-bottom: 10px;
-            }
-            .form-button{
-                width: 100%;
-                padding: 10px;
-                margin-bottom: 10px;
-                border-style: none;
-                text-transform: uppercase;
-                
-            }
-            .error{
-                text-align: center;
-                color: brown;
-                font-weight: bold;
-            }
+  <title>Fabrica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
-        </style>
-         
-    </head>
-    <body>
-        <header class="header">
-            <h1>Admin area</h1>
-            <?php 
-             echo'<h3> Hi! '.ucfirst($user).' <a href="?acao=sair">Logout</a></h3>';
-            ?>
-            
-        </header>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="http://localhost/fabrica/users">Admin-panel</a>
+          </div>
+          <ul class="nav navbar-nav">
+
+            <li class="dropdown active">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="http://localhost/fabrica/list">Show users</a></li>
+                <li><a href="http://localhost/fabrica/new-user">Create new user</a></li>
+                <li><a href="#">Import users</a></li>
+                <li><a href="#">Export users</a></li>
+              </ul>
+            </li>
+
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> <?php echo ucfirst($user)?></a></li>
+            <li><a href="?acao=sair"><span class="glyphicon glyphicon-log-in"></span> Logout </a></li>
+          </ul>
+        </div>
+    </nav>
+    
+    <!--End of nav-->
+    
+    <div class="container-fluid">
         
-        <main>
-           
-            <div class="body">
-                 <h3>Create new user</h3>
-               <form method="post" action="http://localhost/fabrica/create">
-                   <input type="text" name="fname" class="form-control" placeholder="Firt name">
-                   <input type="text" name="lname" class="form-control" placeholder="Last name">
-                   <button class="form-button">Create</button>
-               </form>
-               <span class="error">
-               
-               </span>
+        <div style="padding-top:100px"></div>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <div class="panel" style="border:#ccc 1px solid">
+                    <div class="panel-heading" style="text-align:center"><h2>Create new user</h2></div>
+                    <div class="panel-body">
+                        <form role="form" method="post" action="http://localhost/fabrica/create">
+                            <div class="form-group">
+                                <label for="fname">First name:</label>
+                                <input type="text" name="fname" class="form-control" placeholder="Tipe your first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lname">Last name:</label>
+                                <input type="text" name="lname" class="form-control" placeholder="Tipe your last name">
+                            </div>
+                                
+                            <button class="btn btn-block">Create</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            
-        </main>
+            <div class="col-sm-4"></div>
+        </div>
         
-        <footer>
-        </footer>
-    </body>
+    </div>
+        
+</body>
 </html>
+               
+               

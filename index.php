@@ -28,7 +28,7 @@ $app->post('/securit', function($request, $response) {
     
     $controller = new App\Controller\Controller();
     $name = $controller->securit($_POST['user'], $_POST['pass']);
-    return $this->view->render($response, 'home.phtml',[
+    return $this->view->render($response, 'home.php',[
         'name'=> $name
     ]);
    
