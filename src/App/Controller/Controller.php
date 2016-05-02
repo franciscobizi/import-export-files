@@ -2,19 +2,15 @@
 
 namespace App\Controller;
 use App\Model\Model;
-//use App\View\View;
+use App\Modules\Import;
+use App\Modules\Export;
 use App\Controller\Sessions;
 
 class Controller
 {
-    public function index()
-    {
-         $model = new Model;
-         $view  = new View;
-         $view->render($model->getText());
-        
-    }
-    
+    /*
+     * Geting users from the table
+     */
     public function read()
     {
          $model = new Model;
@@ -22,7 +18,9 @@ class Controller
          return $model->db_read('t_artinov');
         
     }
-    
+    /*
+     * Delete user from the table
+     */
     public function delete($param)
     {
          $model = new Model;
@@ -30,7 +28,9 @@ class Controller
          return $model->db_delete('t_artinov',$param);
         
     }
-    
+    /*
+     * Select user from the table
+     */
     public function select_user($id)
     {
          $model = new Model;
@@ -38,6 +38,9 @@ class Controller
          return $model->db_read('t_artinov', "WHERE id = $id", "*");
         
     }
+    /*
+     * Update user in the table
+     */
     public function update($data,$id)
     {
          $model = new Model;
@@ -45,7 +48,9 @@ class Controller
          return $model->db_update('t_artinov',$data,"id = $id");
         
     }
-    
+    /*
+     * Create user in the table
+     */
     public function create($data)
     {
          $model = new Model;
@@ -53,7 +58,9 @@ class Controller
          return $model->db_create('t_artinov',$data);
         
     }
-    
+    /*
+     * Verify authentication
+     */
     public function securit($user,$pass)
     {
         
@@ -75,6 +82,58 @@ class Controller
         
     }
     
+    /*
+     * Import files
+     */
     
+    public function ImportFile($class,$files)
+    {
+        $arq = new Import();
+        
+        if($class == 'CSV')
+        {
+            $arquivo = $arq->ICreate($class);
+            $result = $arquivo->ImportCVS($files);
+            return $result;
+        }
+        elseif($class == 'JSON')
+        {
+            $arquivo = $arq->ICreate($class);
+            $result = $arquivo->ImportJSON($files);
+            return $result;
+        }
+        elseif($class == 'XML')
+        {
+            $arquivo = $arq->ICreate($class);
+            $result = $arquivo->ImportXML($files);
+            return $result;
+        }
+    }
+    /*
+     * Export files
+     */
+    public function ExportFile($class,$files)
+    {
+        $arq = new Export();
+        
+        if($class == 'CSV')
+        {
+            $arquivo = $arq->ICreate($class);
+            $result = $arquivo->ExportCVS($files);
+            return $result;
+        }
+        elseif($class == 'JSON')
+        {
+            $arquivo = $arq->ICreate($class);
+            $result = $arquivo->ExportJSON($files);
+            return $result;
+        }
+        elseif($class == 'XML')
+        {
+            $arquivo = $arq->ICreate($class);
+            $result = $arquivo->ExportXML($files);
+            return $result;
+        }
+    }
 }
 
