@@ -19,22 +19,22 @@
                         <form role="form" action="http://localhost/fabrica/securit" method="post">
                               <div class="form-group">
                                 <label for="email">Username:</label>
-                                <input type="text" class="form-control" name="user" placeholder="Tipe here your username ">
+                                <input type="text" class="form-control" name="user" placeholder="Tipe here your username " required="">
                               </div>
                               <div class="form-group">
                                 <label for="pwd">Password:</label>
-                                <input type="password" class="form-control" name="pass"placeholder="Tipe here your password">
+                                <input type="password" class="form-control" name="pass"placeholder="Tipe here your password" required="">
                               </div>
 
                               <button type="submit" class="btn btn-block">Login</button>
                               
                         </form>
                         <div style="text-align: center; margin-top: 15px">
-                            <span class="alert-danger">
+                            
                                       <?php
                                        echo isset($name)? $name: null;
                                       ?>
-                            </span>
+                            
                         </div>
                     </div>
                 </div>

@@ -64,20 +64,16 @@ class Controller
     public function securit($user,$pass)
     {
         
-        if(empty($user) && empty($pass))
+        if($user!='francisco' || $pass!='12345')
         {
-            return 'Error! Please fill all fields.';
-        }
-        elseif($user!='francisco' && $pass!='12345')
-        {
-            return "Error! Username or password it's not correct.";
+            return "<span class='alert-danger'>Error! Username or password it's not correct.</span>";
         }
         else
         {
             $sessao = new Sessions();
             $sessao->start();
             $sessao->setValue('USER',$user);
-            return ucfirst($sessao->getValue('USER'))."! You're logon <a href='http://localhost/fabrica/users'>Go to you profile.</a>";
+            return "<span class='alert-success'>".ucfirst($sessao->getValue('USER'))."! You're logon <a href='http://localhost/fabrica/users'>Go to you profile.</a></span>";
         }
         
     }
@@ -106,26 +102,13 @@ class Controller
     {
         $ext = pathinfo($files, PATHINFO_EXTENSION);
         $exts = strtoupper($ext);
-        $class = Export::Create($exts);
-        if('CSV' == $exts)
+        $class = Import::Create($exts);
+        if(!empty($class))
         {
-            $result = $class->ExportCSV($files);
-            return $result;
+            return $class->export($files);
         }
-        elseif('JSON' == $exts)
-        {
-            $result = $class->ExportJSON($files);
-            return $result;
-        }
-        elseif('XML' == $exts)
-        { 
-            $result = $class->ExportXML($files);
-            return $result;
-        }
-        else
-        {
-          return "The file you're trying to import ins't correct.";  
-        }
+        
+        return "<span class='alert-danger'>The file or table you're trying to export dosn't correct. Please choose other.</span>";
     }
 }
 

@@ -110,7 +110,7 @@ $app->post('/edit-user', function ($request, $response) {
     $id = $_POST['id'];
     $lname = $_POST['lname'];
     $fname = $_POST['fname'];
-    $data = ['f_name'=>$fname,'l_name'=>$lname];
+    $data = ['f_name'=>utf8_decode($fname),'l_name'=>  utf8_decode($lname)];
     $controller = new App\Controller\Controller();
     $controller->update($data,$id);
     return $this->view->render($response, 'users.phtml');
