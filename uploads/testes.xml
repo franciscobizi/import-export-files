@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+ 
+<usuarios>
+  <dpessoal>
+		
+		<fname>Andre</fname>
+		<lname>Macundi</lname> 
+  </dpessoal>
+  <dpessoal>
+		<fname>Mafuana</fname>
+		<lname>Mbanza</lname> 
+  </dpessoal>
+</usuarios>

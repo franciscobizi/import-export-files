@@ -7,16 +7,27 @@ use App\Modules\XML;
 
 class Import
 {
-    private $message = "The class you're trying to use don't exist. Therefore couldn't create the object.";
-    public function ICreate($class)
+    
+    public function __construct(){}
+
+    public static function Create($type = '')
     {
-        if(class_exists($class))
+        $class = $type;
+        
+        switch($class)
         {
-            return new $class();
-        }
-        else
-        {
-            return $this->message;
+            case 'CSV':
+                return new CSV();
+                break;
+            case 'JSON':
+                return new JSON();
+                break;
+            case 'XML':
+                return new XML();
+                break;
+            
+            default:
+                
         }
     }
 }

@@ -125,29 +125,14 @@ class Model
         return $data;
         
     }
-    /*
-   public function update($data,$param)
-   {
-         $str = new Crud();
-         $data = $str->db_update('t_artinov',$data,$param);
-        
-         return $data;
-   }
-   public function getData()
-   {
-         $str = new Crud();
-         $data = $str->db_read('t_artinov',null, '*');
-        
-         return $data;
-   }
-   
-   public function create($data)
-   {
-         $str = new Crud();
-         $data = $str->db_create('t_artinov',$data);
-        
-         return $data;
-   }
-   */
+    
+    public function db_import($table,array $data)
+    {
+        $fields = implode(',', array_keys($data));
+        $values = "'".implode("','", array_values($data))."'";
+        $query = "INSERT INTO {$table} ({$fields}) VALUES ({$values})";
+        $this->getConnection()->query($query);
+
+    }
   
 }

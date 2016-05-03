@@ -65,28 +65,23 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <div class="panel" style="border:#ccc 1px solid">
-                    <div class="panel-heading" style="text-align:center"><h2>Edit user</h2></div>
+                    <div class="panel-heading" style="text-align:center"><h2>Import file</h2><h4>( Extensions: CSV, JSON, XML )</h4></div>
                     <div class="panel-body">
-                        <?php
-                        foreach($data as $person)
-                        {
-                       ?> 
-                        <form role="form" method="post" action="http://localhost/fabrica/edit-user">
-                            
-                           <input type="hidden" name="id" class="form-control" value="<?php echo $person->id?>">
+                        
+                        <form role="form" method="post" action="http://localhost/fabrica/import">
+
                            <div class="form-group">
-                                <label for="fname">First name:</label>
-                                <input type="text" name="fname" class="form-control" value="<?php echo $person->f_name?>" placeholder="Firt name">
+                                
+                               <input type="text" name="url" class="form-control" placeholder="Tipe here the url of file">
                            </div>
-                           <div class="form-group">
-                                <label for="lname">Last name:</label>
-                                <input type="text" name="lname" class="form-control" value="<?php echo $person->l_name?>" placeholder="Last name">
-                           </div>
-                           <button class="btn btn-block">Edit</button>
+                           <button class="btn btn-block">Start import</button>
                        </form>
-                       <?php
-                        }
-                       ?>
+                        <div style="text-align: center; margin-top: 15px">
+                                      <?php
+                                       echo isset($dado)? $dado: null;
+                                       
+                                      ?>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -96,6 +91,6 @@
     </div>
         
 </body>
-</html>                
-               
+</html>
+            
            

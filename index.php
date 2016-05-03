@@ -117,6 +117,41 @@ $app->post('/edit-user', function ($request, $response) {
     
 });
 
+/*
+ * Edit user
+ */
+$app->get('/import', function ($request, $response) {
+   
+    
+    return $this->view->render($response, 'import.phtml');
+    
+});
+$app->post('/import', function ($request, $response) {
+    $url = $_POST['url'];
+    
+    $controller = new App\Controller\Controller();
+    $dado = $controller->ImportFile($url);
+    return $this->view->render($response, 'import.phtml',[
+            'dado'=>$dado
+            ]);
+    
+});
+$app->get('/export', function ($request, $response) {
+   
+    
+    return $this->view->render($response, 'export.phtml');
+    
+});
+$app->post('/export', function ($request, $response) {
+    $url = $_POST['url'];
+    
+    $controller = new App\Controller\Controller();
+    $dado = $controller->ImportFile($url);
+    return $this->view->render($response, 'export.phtml',[
+            'dado'=>$dado
+            ]);
+    
+});
 $app->run();
 
 

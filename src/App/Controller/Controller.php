@@ -86,53 +86,45 @@ class Controller
      * Import files
      */
     
-    public function ImportFile($class,$files)
+    public function ImportFile($files)
     {
-        $arq = new Import();
+        $ext = pathinfo($files, PATHINFO_EXTENSION);
+        $exts = strtoupper($ext);
+        $class = Import::Create($exts);
+        if(!empty($class))
+        {
+            return $class->import($files);
+        }
         
-        if($class == 'CSV')
-        {
-            $arquivo = $arq->ICreate($class);
-            $result = $arquivo->ImportCVS($files);
-            return $result;
-        }
-        elseif($class == 'JSON')
-        {
-            $arquivo = $arq->ICreate($class);
-            $result = $arquivo->ImportJSON($files);
-            return $result;
-        }
-        elseif($class == 'XML')
-        {
-            $arquivo = $arq->ICreate($class);
-            $result = $arquivo->ImportXML($files);
-            return $result;
-        }
+        return "<span class='alert-danger'>The file you're trying to import dosn't correct. Please choose other with correct extension.</span>";
+        
     }
     /*
      * Export files
      */
-    public function ExportFile($class,$files)
+    public function ExportFile($files)
     {
-        $arq = new Export();
-        
-        if($class == 'CSV')
+        $ext = pathinfo($files, PATHINFO_EXTENSION);
+        $exts = strtoupper($ext);
+        $class = Export::Create($exts);
+        if('CSV' == $exts)
         {
-            $arquivo = $arq->ICreate($class);
-            $result = $arquivo->ExportCVS($files);
+            $result = $class->ExportCSV($files);
             return $result;
         }
-        elseif($class == 'JSON')
+        elseif('JSON' == $exts)
         {
-            $arquivo = $arq->ICreate($class);
-            $result = $arquivo->ExportJSON($files);
+            $result = $class->ExportJSON($files);
             return $result;
         }
-        elseif($class == 'XML')
-        {
-            $arquivo = $arq->ICreate($class);
-            $result = $arquivo->ExportXML($files);
+        elseif('XML' == $exts)
+        { 
+            $result = $class->ExportXML($files);
             return $result;
+        }
+        else
+        {
+          return "The file you're trying to import ins't correct.";  
         }
     }
 }
