@@ -10,23 +10,24 @@ class CSV
 
     public function import($file)
     {
-            $model = new Model();
-            $row = 0;
-            if(($handle = fopen($file, "r")) !== FALSE)
-            {
+        $model = new Model();
+        $row = 0;
+        if(($handle = fopen($file, "r")) !== FALSE)
+        {
 		
-		while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
-		{
-                   
-                    $arr = ['f_name'=>$data[0],'l_name'=>$data[1]];
-                    $model->db_import('t_artinov',$arr);
-								 
-                    $row++;
-                }
-		return $this->message;					 
-                fclose ($handle);
-            
+    		while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
+    		{
+                       
+                $arr = ['f_name'=>$data[0],'l_name'=>$data[1]];
+                $model->db_import('t_artinov',$arr);
+    								 
+                $row++;
             }
+
+		    return $this->message;					 
+            fclose ($handle);
+            
+        }
         
         
     }
