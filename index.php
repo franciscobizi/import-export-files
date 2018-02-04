@@ -2,7 +2,7 @@
 use \Psr\Http\Message\ServerRequestInterface as Request;
 use \Psr\Http\Message\ResponseInterface as Response;
 require 'vendor/autoload.php';
-use App\Builder;
+
 
 
 $config = [
@@ -24,9 +24,9 @@ $container['view'] = function ($container) {
 /*
  * Home page
  */
-$app->get('/', function (Request $request, Response $response, array $args) {
-
-    $response = Builder::create('Import')->build()
+$app->get('/', function (Request $request, Response $response) {
+   ;
+    $response = \App\Build::create('Import')->build()
            ->setFile('http://localhost/import-export/uploads/testes.json')
            ->getFile()
            ->imported();

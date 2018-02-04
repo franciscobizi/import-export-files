@@ -14,9 +14,5 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^6"
-    },
-    "require": {
-      
-      "slim/slim": "^3.0"
     }
 }

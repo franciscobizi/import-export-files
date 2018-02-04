@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Builder;
+namespace App\Build;
 
 /**
 * Class to build other class
 * Using pattern Builder
 */
-class Builder 
+class Build 
 {
 	private $class;
 
