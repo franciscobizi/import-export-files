@@ -1,6 +1,6 @@
 <?php
-namespace App\Import;
-use App\Message;
+namespace App\classes;
+use App\classes\Message;
 
 /**
 * Class for importing files as json, xml and csv
@@ -19,7 +19,7 @@ class Import
     * @param string $file with url, file with these extensions json, xml, csv
     * @return object $this, file and extension 
     */
-    public static function setFile($file)
+    public function setFile($file)
     {
         $ext = pathinfo($file, PATHINFO_EXTENSION);
         $this->extension = strtoupper($ext);
@@ -45,8 +45,8 @@ class Import
     }
 
     /**
-    * Method for getting file
-    * @return object $this, file and extension 
+    * Method for getting file and import it to App
+    * @return object $this, Object with imported data 
     */
     public function getFile()
     {
@@ -80,7 +80,8 @@ class Import
     final public function Imported()
     {
         
-        $this->displayMessage();
+        $this->getMessage('Ficheiro importado com sucessso!');
+        //return $this->imported;
     }
 
     ####################################################
@@ -101,7 +102,8 @@ class Import
         foreach($encoded->usuarios as $data)
         {
             $arr = ['f_name'=> utf8_decode($data->fname),'l_name'=>  utf8_decode($data->lname)];
-            //$model->db_import('t_artinov',$arr);
+            //$model->db_import('table',$arr); insert data in database
+            //echo "{$data->fname} {$data->lname}<br>"; an exemplo to display imported data
         }
         
     }
@@ -114,7 +116,8 @@ class Import
         foreach ($xml as $data)
         {
             $arr = ['f_name'=>$data->fname,'l_name'=>$data->lname];
-            //$model->db_import('t_artinov',$arr);
+            //$model->db_import('table',$arr); insert data in database
+            //echo "{$data->fname} {$data->lname}<br>"; // an exemplo to display imported data
         }                   
                 
     }
@@ -131,12 +134,12 @@ class Import
             {
                                
                 $arr = ['f_name'=>$data[0],'l_name'=>$data[1]];
-                //$model->db_import('t_artinov',$arr);
+                //$model->db_import('table',$arr); insert data in database
+                //echo "{$data[0]} {$data[1]}<br>"; an exemplo to display imported data
                                              
                 $row++;
             }
-
-            //return $this->message;                   
+                   
             fclose ($handle);
                     
         }                   

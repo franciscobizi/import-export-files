@@ -1,40 +1,11 @@
 <?PHP
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
-require 'vendor/autoload.php';
+require __DIR__ .'/vendor/autoload.php';
 
+use App\classes\Builder;
 
-
-$config = [
-    'settings' => [
-        'displayErrorDetails' => true
-    ],
-];
-// Create app
-$app = new \Slim\App($config);
-
-// Get container
-$container = $app->getContainer();
-
-// Register component on container
-$container['view'] = function ($container) {
-    return new \Slim\Views\PhpRenderer('templates/');
-};
-// Render Twig template in route
-/*
- * Home page
- */
-$app->get('/', function (Request $request, Response $response) {
-   ;
-    $response = \App\Build::create('Import')->build()
-           ->setFile('http://localhost/import-export/uploads/testes.json')
+$response = Builder::create()->build('Import')
+           ->setFile('http://localhost/import-export/uploads/testes.csv')
            ->getFile()
            ->imported();
 
-    return $response;
-});
-
-$app->run();
-
-
-
+// Output: A message of confirmation so data were imported successufull.
