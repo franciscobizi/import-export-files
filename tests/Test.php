@@ -1,26 +1,29 @@
 <?php
-use App\Builder;
+use App\classes\Builder;
 use PHPUnit\Framework\TestCase;
 
 final class Test extends TestCase
 {
-    // ...
 
-    public function testOneInstance()
+    public function testImport()
     {
-        // Arrange
-        //$a = new Money(1);
-        $instance = new Crud();
-        $v = $instance->db_read('artinov');
+        $response = Builder::create()->build('Import')
+           ->setFile('http://localhost/import-export/uploads/testes.csv')
+           ->getFile()
+           ->imported();
 
-        // Act
-        //$b = $a->negate();
-
-        // Assert
-        //$this->assertEquals(-1, $b->getAmount());
-        $this->assertEquals(1,$v);
+        $this->assertEquals($response, $response);
     }
 
-    // ...
+    public function testExport()
+    {
+        $response = Builder::create()->build('\Export')
+           ->setFile('http://localhost/import-export/uploads/testes.csv')
+           ->getFile()
+           ->imported();
+
+        $this->assertEquals("tudo", $response);
+    }
+
 }
 

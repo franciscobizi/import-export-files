@@ -3,7 +3,7 @@ require __DIR__ .'/vendor/autoload.php';
 
 use App\classes\Builder;
 
-$response = Builder::create()->build('Import')
+$response = Builder::create()->build('\Import')
            ->setFile('http://localhost/import-export/uploads/testes.csv')
            ->getFile()
            ->imported();
