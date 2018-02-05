@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
- 
+<?xml version="1.0" encoding="UTF-8"?>
 <usuarios>
-  <dpessoal>
-		
-		<fname>Andre</fname>
-		<lname>Macundi</lname> 
-  </dpessoal>
-  <dpessoal>
-		<fname>Mafuana</fname>
-		<lname>Mbanza</lname> 
-  </dpessoal>
+  <user>
+  	<fname>Andre</fname>
+  	<lname>Massang</lname>
+  </user>
+  <user>
+  	<fname>Hugo</fname>
+  	<lname>Santos</lname>
+  </user>
+  <user>
+  	<fname>Maura</fname>
+  	<lname>Vasconcelos</lname>
+  </user>
 </usuarios>
