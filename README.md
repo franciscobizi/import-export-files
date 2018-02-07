@@ -17,7 +17,7 @@ composer require fbizi/import-export or [download the zip file](https://github.c
 ### Importing & Exporting
 Just use the builder to create a new Import/Export object:
 
-```
+```ruby
 use App\Fbizi\Builder;
 
 // An exemple for exporting file 
@@ -38,7 +38,7 @@ Just adapt your own data in the Json, Csv and Xml class on their import methods.
 
 #### An exemple with json file
 
-```
+```ruby
 $encoded = json_decode($json);
                 
 foreach($encoded->usuarios as $data){
