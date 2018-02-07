@@ -1,5 +1,5 @@
 <?php
-use App\classes\Builder;
+use App\Fbizi\Builder;
 use PHPUnit\Framework\TestCase;
 
 final class Test extends TestCase
@@ -23,6 +23,17 @@ final class Test extends TestCase
            ->imported();
 
         $this->assertEquals("tudo", $response);
+    }
+
+    public function testCsv()
+    {
+
+        $csv = new Csv();
+        $atualResult = $csv->csvImport();
+        $expected = 'Ficheiro importado com sucesso!';
+
+        $this->assertEquals($expected, $atualResult);
+
     }
 
 }

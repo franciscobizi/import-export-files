@@ -1,5 +1,5 @@
 <?php
-namespace App\classes;
+namespace App\Fbizi;
 
 trait Message{
 

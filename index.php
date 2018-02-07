@@ -1,15 +1,14 @@
 <?PHP
 require __DIR__ .'/vendor/autoload.php';
 
-use App\classes\Builder;
+use App\Fbizi\Builder;
 
-/*$response = Builder::create()->build('\Export')
-           ->setPathWithFile('C:\xampp\htdocs\import-export\uploads\exported.xml')
-           ->getFile()
-           ->save();*/
-$response = Builder::create()->build('\Import')
-           ->setUrl('http://localhost/import-export/uploads/tests.xml')
-           ->getFile()
-           ->save();
+$export = Builder::create()->build('\Export')
+           ->setPathWithFileName('C:\xampp\htdocs\import-export\uploads\downloads\exported.csv')
+           ->export();
+           echo "<br/>";
+$import = Builder::create()->build('\Import')
+           ->setUrlWithFileName('http://localhost/import-export/uploads/testes.xml')
+           ->import();
 
 // Output: A message of confirmation so data were imported successufull.

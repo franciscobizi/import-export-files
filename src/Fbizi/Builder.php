@@ -1,8 +1,8 @@
 <?php
 
-namespace App\classes;
-use App\classes\Message;
-use App\classes\Import;
+namespace App\Fbizi;
+use App\Fbizi\Message;
+use App\Fbizi\Import;
 //use App\classes\Export;
 /**
 * Class to build other class
@@ -29,7 +29,7 @@ class Builder
 
 		}
 
-		$this->class = 'App\classes'.$this->class;
+		$this->class = 'App\Fbizi'.$this->class;
 
 		if(class_exists($this->class)){
 
