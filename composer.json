@@ -1,8 +1,16 @@
 {
     "name": "fbizi/import-export",
+    "type": "library",
+    "description": "Import/Export files",
+    "keywords": ["Import","Export"],
+    "homepage": "https://github.com/franciscobizi/imporTExport-files",
+    "license": "MIT",
     "author":{
       "name":"Francisco Bizi",
       "email":"taylorsoft28@gmail.com"
+    },
+    "require": {
+        "php": "^7.0"
     },
     "autoload": {
         
