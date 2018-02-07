@@ -1,7 +1,6 @@
 # imporTExport-files
 
 Downloads First Stable Version v1
-require "scientist"
 
 A simple library to work with Import and Export files (requires PHP 7.0.2 +). The implementation is based on the current draft. CSV, JSON and XML are the files extensions that supported for the library.
 
