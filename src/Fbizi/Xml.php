@@ -32,7 +32,7 @@ class Xml
 
 			}
 
-			$this->getMessage('Ficheiro importado com sucessso!');                   
+			$this->getMessage('Ficheiro importado com sucesso!');                   
 	                	
     	} catch (Exception $e) {
     		
@@ -75,7 +75,7 @@ class Xml
 			$xml = $x->outputMemory();
 
 			fclose($fp);
-			$this->getMessage('Ficheiro exportado com sucessso!');
+			$this->getMessage('Ficheiro exportado com sucesso!');
            	
         }catch(Exception $e){
 

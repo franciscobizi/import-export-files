@@ -3,6 +3,7 @@ namespace App\Fbizi;
 use App\Fbizi\Xml;
 use App\Fbizi\Json;
 use App\Fbizi\Csv;
+use App\Fbizi\Message;
 
 /**
 * Class parent with global methos
@@ -14,6 +15,7 @@ use App\Fbizi\Csv;
 class UploadsDownloads
 {
 	private $file, $extension;
+    use Message;
 
     /**
     * Method for setting file
@@ -22,10 +24,33 @@ class UploadsDownloads
     */
     protected function setUrlOrPath($file)
     {
+        
         $ext = pathinfo($file, PATHINFO_EXTENSION);
+
         $this->extension = strtoupper($ext);
+
         $this->file = $file;
+
         return $this;
+
+    }
+
+    /**
+    * Private methos for checking if file exists and not null
+    * @param string $file with url, file with these extensions json, xml, csv
+    * @return boolean true or false, true if file exists not null  
+    */
+    private function isFileAndNotNull($file)
+    {
+        
+        if (file_exists($file) && filesize($file) !== 0) {
+            
+            return true;
+
+        }else{
+
+            return false;
+        }
 
     }
 
@@ -35,29 +60,40 @@ class UploadsDownloads
     */
     protected function executeImport()
     {
-        
-        switch($this->extension)
-        {
-            case 'CSV':
-                $csv = new Csv();
-                $this->file = $csv->csvImport($this->file);
-                return $this->file;
-                break;
-            case 'JSON':
-                $json = new Json();
-                $this->file = $json->jsonImport($this->file);
-                return $this->file;
-                break;
-            case 'XML':
-                $xml = new Xml();
-                $this->file = $xml->xmlImport($this->file);
-                return $this->file;
-                break;
+        if ($this->isFileAndNotNull($this->file)) {
             
-            default:
+            switch($this->extension)
+            {
+                case 'CSV':
+                    $csv = new Csv();
+                    $this->file = $csv->csvImport($this->file);
+                    return $this->file;
+                    break;
+
+                case 'JSON':
+                    $json = new Json();
+                    $this->file = $json->jsonImport($this->file);
+                    return $this->file;
+                    break;
+
+                case 'XML':
+                    $xml = new Xml();
+                    $this->file = $xml->xmlImport($this->file);
+                    return $this->file;
+                    break;
                 
+                default:
+                    $this->getMessage('Arquivo não compatível');
+                    break;
+                    
+            }
+
+        }else{
+
+            $this->getMessage('Arquivo ou pasta não encontrado!');
+
         }
-             
+                 
     }
     
     /**
@@ -84,10 +120,13 @@ class UploadsDownloads
                 $this->file = $xml->xmlExport($this->file);
                 return $this->file;
                 break;
-            
-            default:
                 
+            default:
+                $this->getMessage('Arquivo não compatível');
+                break;
+                    
         }
-             
+          
     }
+
 }

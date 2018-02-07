@@ -43,7 +43,7 @@ class Csv
 	                    
 	        }
 
-	        $this->getMessage('Ficheiro importado com sucessso!');       
+	        $this->getMessage('Ficheiro importado com sucesso!');       
                 	
         } catch (Exception $e) {
             
@@ -84,7 +84,7 @@ class Csv
 			//Finally, close the file pointer.
 			fclose($fp);
 
-			$this->getMessage('Ficheiro exportado com sucessso!');
+			$this->getMessage('Ficheiro exportado com sucesso!');
 
 
         } catch (Exception $e) {

@@ -15,7 +15,7 @@ class Builder
 
 	static public function create()
 	{	
-		return new static;
+		return new self();
 	}
 
 	public function build($class = "")

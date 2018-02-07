@@ -37,7 +37,7 @@ class Json
                 //echo "{$data->fname} {$data->lname}<br>"; //an exemplo to display imported data
             }
 
-            $this->getMessage('Ficheiro importado com sucessso!');
+            $this->getMessage('Ficheiro importado com sucesso!');
 
                            	
         } catch (Exception $e) {
@@ -70,7 +70,7 @@ class Json
 
 			fclose($fp);
 
-			$this->getMessage('Ficheiro exportado com sucessso!');
+			$this->getMessage('Ficheiro exportado com sucesso!');
                            	
         } catch (Exception $e) {
                            	

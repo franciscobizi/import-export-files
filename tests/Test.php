@@ -7,29 +7,40 @@ final class Test extends TestCase
 
     public function testImport()
     {
-        $response = Builder::create()->build('Import')
-           ->setFile('http://localhost/import-export/uploads/testes.csv')
-           ->getFile()
-           ->imported();
+        $actual = Builder::create()->build('\Import')
+           ->setUrlWithFileName('_DIR_./../uploads/testes.csv')
+           ->import();
 
-        $this->assertEquals($response, $response);
+        $expected = $actual;
+
+        // Passed test
+        $this->assertEquals($expected, $actual);
+
+        // Fail test
+        $this->assertEquals("Fail test", $actual);
     }
-
+    
     public function testExport()
     {
-        $response = Builder::create()->build('\Export')
-           ->setFile('http://localhost/import-export/uploads/testes.csv')
-           ->getFile()
-           ->imported();
+        $actual = Builder::create()->build('\Export')
+           ->setPathWithFileName('_DIR_./../uploads/downloads/testes.csv')
+           ->export();
 
-        $this->assertEquals("tudo", $response);
+        // Passed test
+        $this->assertEquals($expected, $actual);
+
+        // Fail test
+        $this->assertEquals("Fail test", $actual);
     }
-
-    public function testCsv()
+    
+    // Missing namespace
+    public function testFailCsv()
     {
 
         $csv = new Csv();
+
         $atualResult = $csv->csvImport();
+        
         $expected = 'Ficheiro importado com sucesso!';
 
         $this->assertEquals($expected, $atualResult);
