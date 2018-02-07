@@ -7,7 +7,7 @@ A simple library to work with Import and Export files (requires PHP 7.0.2 +). Th
 ## Installation
 You can install library using Composer.
 
-composer require fbizi/import-export or [download the zip file](https://github.com/franciscobizi/imporTExport-files/archive/master.zip)
+`**composer require fbizi/import-export-files**` or [download the zip file](https://github.com/franciscobizi/imporTExport-files/archive/master.zip)
 
 ## Dependencies
 - PHP 7.0.2+
