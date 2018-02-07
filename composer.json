@@ -1,5 +1,5 @@
 {
-    "name": "fbizi/import-export",
+    "name": "fbizi/import-export-files",
     "type": "library",
     "description": "Import/Export files",
     "keywords": ["Import","Export"],
