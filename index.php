@@ -11,7 +11,7 @@ $export = Builder::create()->build('\Export')
 echo "<h1>Importing file</h1>";
 
 $import = Builder::create()->build('\Import')
-           ->setUrlWithFileName('_DIR_./../uploads/testes.xml')
+           ->setPathWithFileName('_DIR_./../uploads/testes.xml')
            ->import();
 
 // Output: A message of confirmation so data were imported successufull.

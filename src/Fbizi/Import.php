@@ -17,7 +17,7 @@ class Import extends UploadsDownloads
     * @param string $url, an url with source file
     * @return object $this, with url
     */
-    public function setUrlWithFileName($url)
+    public function setPathWithFileName($url)
     {
         parent::setUrlOrPath($url);
         return $this;
@@ -32,6 +32,7 @@ class Import extends UploadsDownloads
         
         parent::executeImport();
         return $this;
+        
     }
 
 
