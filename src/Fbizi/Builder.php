@@ -1,30 +1,38 @@
 <?php
 
 namespace App\Fbizi;
-use App\Fbizi\Message;
-use App\Fbizi\Import;
-//use App\classes\Export;
+require "/../../config/config.php";
+
 /**
-* Class to build other class
-* Using pattern Builder
+* Builder class for creating another class
+* PHP 7
+* Methods : create, build
+* @author Francisco Bizi, <taylorsoft28@gmail.com>
+* @copyright Francisco Bizi  
 */
 class Builder 
 {
 	private $class;
 	use Message;
 
+	// Self instance
 	static public function create()
 	{	
 		return new self();
 	}
 
+	/**
+	* This is the build method
+	* @param string $class, name of class to be created
+	* @return object, the object of class
+	*/
 	public function build($class = "")
 	{
 		$this->class = $class;
 
 		if($this->class == "") {
 			
-			$this->getMessage('Está faltando nome da class, para ser construido no metódo build.');
+			$this->getMessage('falta nome da class, como parametro no metódo build.');
 			exit;
 
 		}

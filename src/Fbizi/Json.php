@@ -1,7 +1,6 @@
 <?php
-namespace App\Fbizi;
 
-use App\Fbizi\Message;
+namespace App\Fbizi;
 
 /**
 * Class Json for manipuling import/export file
@@ -12,7 +11,13 @@ use App\Fbizi\Message;
 */
 class Json
 {
-	use Message;
+	private $data;
+    use Message;
+
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
 
 	/**
 	* Method for manupuling json import file
@@ -24,25 +29,30 @@ class Json
         
         try {
 
-        	$curl = curl_init($file);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            $json = curl_exec($curl);
-            curl_close($curl);
-            $encoded = json_decode($json);
+        	if($curl = curl_init($file)){
+
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                $json = curl_exec($curl);
+                curl_close($curl);
+                $encoded = json_decode($json);
+                    
+                foreach($encoded->usuarios as $data)
+                {
+                    $arr = ['f_name'=> utf8_decode($data->fname),'l_name'=>  utf8_decode($data->lname)];
+                    //$model->db_import('table',$arr); insert data in database
+                }
+
+                $this->getMessage('Arquivo importado com sucesso!');
+
+            }else{
+
+                throw new \Exception($this->getMessage('Arquivo está sendo usado por outro programa!'));
                 
-            foreach($encoded->usuarios as $data)
-            {
-                $arr = ['f_name'=> utf8_decode($data->fname),'l_name'=>  utf8_decode($data->lname)];
-                //$model->db_import('table',$arr); insert data in database
-                //echo "{$data->fname} {$data->lname}<br>"; //an exemplo to display imported data
             }
-
-            $this->getMessage('Ficheiro importado com sucesso!');
-
                            	
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
                            	
-            $this->getMessage('Não foi possível importar o ficheio!');              
+            $e->getMessage();              
         }                   
                 
     }
@@ -57,24 +67,24 @@ class Json
         
         try {
 
-        	$jsonString = '[
-				{"fname":"Francisco","Age":38},{"fname":"John","Age":21},{"fname":"Sara","Age":24}
-			]';
-
 			$csvFileName = $file;
 
-			//Open file pointer.
-			$fp = fopen($csvFileName, 'w');
+			if($fp = fopen($csvFileName, 'w')){
 
-			fwrite($fp, $jsonString);
+    			fwrite($fp, json_encode($this->data));
 
-			fclose($fp);
+    			fclose($fp);
 
-			$this->getMessage('Ficheiro exportado com sucesso!');
+    			$this->getMessage('Arquivo exportado com sucesso!');
+
+            }else{
+
+                throw new \Exception($this->getMessage('Arquivo está sendo usado por outro programa!'));    
+            }
                            	
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
                            	
-            $this->getMessage('Não foi possível exportar o ficheio!');              
+            $e->getMessage();              
         }
                 
     }

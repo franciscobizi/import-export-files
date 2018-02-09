@@ -1,16 +1,13 @@
 <?php
+
 namespace App\Fbizi;
-use App\Fbizi\Xml;
-use App\Fbizi\Json;
-use App\Fbizi\Csv;
-use App\Fbizi\Message;
 
 /**
 * Class parent with global methos
 * PHP 7
 * Methods : setFile, getFile, imported
 * @author Francisco Bizi, <taylorsoft28@gmail.com>
-* @copyright Taylorsoft,lda  
+* @copyright Francisco Bizi  
 */
 class UploadsDownloads
 {
@@ -100,23 +97,23 @@ class UploadsDownloads
     * Method for exporting data from json to csv, json and xml
     * @return string, export data to given path 
     */
-    public function executeExport()
+    public function executeExport($data)
     {
         
         switch($this->extension)
         {
             case 'CSV':
-                $csv = new Csv();
+                $csv = new Csv($data);
                 $this->file = $csv->csvExport($this->file);
                 return $this->file;
                 break;
             case 'JSON':
-                $json = new Json();
+                $json = new Json($data);
                 $this->file = $json->jsonExport($this->file);
                 return $this->file;
                 break;
             case 'XML':
-                $xml = new Xml();
+                $xml = new Xml($data);
                 $this->file = $xml->xmlExport($this->file);
                 return $this->file;
                 break;

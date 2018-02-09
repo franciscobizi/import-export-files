@@ -1,5 +1,6 @@
 <?php
 use App\Fbizi\Builder;
+use App\Fbizi\Export;
 use PHPUnit\Framework\TestCase;
 
 final class Test extends TestCase
@@ -40,8 +41,28 @@ final class Test extends TestCase
         $csv = new Csv();
 
         $atualResult = $csv->csvImport();
-        
+
         $expected = 'Ficheiro importado com sucesso!';
+
+        $this->assertEquals($expected, $atualResult);
+
+    }
+
+    public function testSetDataToExport()
+    {
+
+        $export = new Export();
+
+        $data = [
+
+          [ 'name' => 'Francisco', 'Age' => '34' ],
+          [ 'name' => 'Anoli', 'Age' => '37' ]
+
+        ];
+
+        $atualResult = $export->setDataToExport($data);
+        
+        $expected = 'Ficheiro exportado com sucesso!';
 
         $this->assertEquals($expected, $atualResult);
 

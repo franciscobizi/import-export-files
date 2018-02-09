@@ -1,7 +1,6 @@
 <?php
-namespace App\Fbizi;
 
-use App\Fbizi\Message;
+namespace App\Fbizi;
 
 /**
 * Class Csv for manipuling import/export file
@@ -12,7 +11,13 @@ use App\Fbizi\Message;
 */
 class Csv
 {
+	private $data;
 	use Message;
+
+	public function __construct($data)
+	{
+		$this->data = $data;
+	}
 
 	/**
 	* Method for manupuling csv import file
@@ -32,22 +37,25 @@ class Csv
 	            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
 	            {
 	                               
-	                $arr = ['f_name'=>$data[0],'l_name'=>$data[1]];
+	                $arr[$row] = $data;
 	                //$model->db_import('table',$arr); insert data in database
-	                echo "{$data[0]} {$data[1]}<br>"; //an exemplo to display imported data
 	                                             
 	                $row++;
 	            }
-	                   
+	                
+	        	$this->getMessage('Arquivo importado com sucesso!');
+
 	            fclose ($handle);
 	                    
-	        }
+	        }else{
 
-	        $this->getMessage('Ficheiro importado com sucesso!');       
+	        	throw new \Exception($this->getMessage('Arquivo está sendo usado por outro programa!'));
+	        	
+	        }       
                 	
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             
-            $this->getMessage('Não foi possível exportar o ficheio!');
+            $e->getMessage();
                	
         }        
     }
@@ -62,34 +70,29 @@ class Csv
         
         try {
         	
-			//An example JSON string.
-			$jsonString = '[{"name":"Fancisco","age":38},{"name":"Sandra","age":21},{"name":"Sara","age":16}]';
-
-			//Decode the JSON and convert it into an associative array.
-			$jsonDecoded = json_decode($jsonString, true);
-
-			//Give our CSV file a name.
-
 			$csvFileName = $file;
 
-			//Open file pointer.
-			$fp = fopen($csvFileName, 'w');
+			if($fp = fopen($csvFileName, 'w')){
 
-			//Loop through the associative array.
-			foreach($jsonDecoded as $row){
-			    //Write the row to the CSV file.
-			    fputcsv($fp, $row);
-			}
+		        foreach($this->data as $row){
+				    
+				    fputcsv($fp, $row); 
+				}
 
-			//Finally, close the file pointer.
+				$this->getMessage('Arquivo exportado com sucesso!');
+
+		    }else{
+
+		        throw new \Exception($this->getMessage('Arquivo está sendo usado por outro programa!'));
+
+		    }
+
 			fclose($fp);
 
-			$this->getMessage('Ficheiro exportado com sucesso!');
-
-
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
         	
-        	$this->getMessage('Não foi possível exportar o ficheio!');
+        	echo $e->getMessage();
+        	exit;
 
         }
                 

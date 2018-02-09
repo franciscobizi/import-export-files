@@ -1,9 +1,11 @@
 <?php
 namespace App\Fbizi;
 
-trait Message{
+trait Message
+{
 
-	public function getMessage($message = ''){
+	public function getMessage($message = '')
+	{
 
 		echo"<h3>$message</h3>";
 	}

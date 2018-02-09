@@ -1,7 +1,6 @@
 <?php
-namespace App\Fbizi;
 
-use App\Fbizi\Message;
+namespace App\Fbizi;
 
 /**
 * Class xml for manipuling import/export file
@@ -12,7 +11,13 @@ use App\Fbizi\Message;
 */
 class Xml
 {
+	private $data;
 	use Message;
+
+	public function __construct($data)
+	{
+		$this->data = $data;
+	}
 
 	/**
 	* Method for manupuling xml import file
@@ -24,19 +29,25 @@ class Xml
         
     	try {
     		
-	        $xml = simplexml_load_file($file);
-	 
-			foreach ($xml as $data){
+	        if($xml = simplexml_load_file($file)){
 
-			    $arr = ['f_name'=>$data->fname,'l_name'=>$data->lname];
+				foreach ($xml->dpessoal as $data){
 
+				    $arr = ['f_name'=>$data->fname,'l_name'=>$data->lname];
+
+				}
+
+				$this->getMessage('Arquivo importado com sucesso!');
+				
+			}else{
+
+				throw new \Exception($this->getMessage('Arquivo está sendo usado por outro programa!'));	
 			}
-
-			$this->getMessage('Ficheiro importado com sucesso!');                   
+			                   
 	                	
-    	} catch (Exception $e) {
+    	} catch (\Exception $e) {
     		
-    		$this->getMessage('Não foi possível importar o ficheio!');
+    		$e->getMessage();
     	}
     }
 
@@ -47,39 +58,29 @@ class Xml
 	*/
     public function xmlExport($file)
     {
-        
-        $jsonString = '[{"name":"Fancisco","age":38},{"name":"Sandra","age":21},{"name":"Sara","age":16}]';
-
-		$jsonDecoded = json_decode($jsonString, true);
 
 		$xmlFileName = $file;
 
         try{
-	
-			$x = new \XMLWriter();
-			$x->openMemory();
-			$x->startDocument('1.0','UTF-8');
-			$x->startElement('Users');
 
-			$fp = fopen($xmlFileName, 'w');
+				$xml = new \SimpleXMLElement('<Users></Users>');
+ 				
+				foreach($this->data as $row){
 
-			foreach($jsonDecoded as $row)
-			{
-			    
-			    fputxml($fp, $x->writeAttribute($row));
-					
-			}
+					$user = $xml->addChild('user');
+					$user->addChild("name","{$row['name']}");
+					$user->addChild("age","{$row['age']}");
+					$user->addChild("role","{$row['role']}");
+				}
+				
+				file_put_contents($xmlFileName, $xml->asXML());
 
-			$x->endElement();
-			$x->endDocument();
-			$xml = $x->outputMemory();
+				$this->getMessage('Arquivo exportado com sucesso!');
+			  	
+        }catch(\Exception $e){
 
-			fclose($fp);
-			$this->getMessage('Ficheiro exportado com sucesso!');
-           	
-        }catch(Exception $e){
-
-           	$this->getMessage('Não foi possível exportar o ficheio!');
+           	$e->getMessage();
+           	exit;
         }   
         
     }
