@@ -7,7 +7,8 @@ A simple library to work with Import and Export files (requires PHP 7.0.2 +). Th
 ## Installation
 Package is available on [Packagist](https://packagist.org/packages/fbizi/import-export-files), you can install it using Composer.
 
-```composer require fbizi/import-export-files or [download the zip file](https://github.com/franciscobizi/imporTExport-files/archive/master.zip)```
+```composer require fbizi/import-export-files```
+ or [download the zip file](https://github.com/franciscobizi/imporTExport-files/archive/master.zip)
 
 ## Dependencies
 - PHP 7.0.2+
@@ -20,23 +21,25 @@ Just use the builder to create a new Import/Export object:
 ```ruby
 use App\Fbizi\Builder;
 
-Exporting file;
+### Exporting file
 
 $export = Builder::create('\Export') // set class 
-		->setDataToExport($data) // set data (array) to be exported 
+	->setDataToExport($data) // set data (array) to be exported 
         ->setPathWithFileName('/home/uploads/downloads/ex-csv.xml') // set path with file name
         ->build(); // the build method to build Export class
 
 $export->export(); // method to export data
 
-// Output: A message of confirmation so data were imported successufull.
+// Output: A message of confirmation so data were exporte successufull.
 
-Importing file;
+### Importing file
 
 $import = Builder::create('\Import') // set class
            ->setPathWithFileName('/home/uploads/testes.csv') // set path with file name
            ->build(); the build method to build Import class
 $imported = $import->import()->get(); // method to import data
+
+// Output: Data and a message of confirmation so data were imported successufull.
 
 ```
 ### Note : You can use the imported data for saving on Database
@@ -47,7 +50,7 @@ Just adapt your own data and saving it in your database.
 ```ruby
 $encoded = json_decode($imported);
                 
-foreach($encoded->usuarios as $data){
+foreach($encoded->users as $data){
 
     $arr = ['f_name'=> utf8_decode($data->fname),'l_name'=>  utf8_decode($data->lname)];
     $model->insert('table', $arr); //insert data in database
