@@ -7,6 +7,7 @@ namespace App\Fbizi;
 * PHP version 7
 * Methods : csvImport, csvImport
 * @author Francisco Bizi, <taylorsoft28@gmail.com>
+* @param array $data, array of data to export
 * @copyright Taylorsoft,lda  
 */
 class Csv
@@ -36,14 +37,17 @@ class Csv
 	                
 	            while (($data = fgetcsv($handle, 1000, ",")) !== FALSE)
 	            {
-	                               
-	                $arr[$row] = $data;
-	                //$model->db_import('table',$arr); insert data in database
-	                                             
-	                $row++;
-	            }
 	                
-	        	$this->getMessage('Arquivo importado com sucesso!');
+	                foreach ($data as $value) {
+	                	
+	                	$arr[] = $value;
+	                }
+
+	                $row++;
+
+	            } 
+
+	            return $arr;
 
 	            fclose ($handle);
 	                    

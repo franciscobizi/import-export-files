@@ -12,59 +12,23 @@ namespace App\Fbizi;
 class Export extends UploadsDownloads
 {
     private $data = array();
+    private $path;
 
-    /**
-    * Set path with the file name
-    * @param string $path, an path with source file
-    * @return object $this, with path
-    */
-    public function setPathWithFileName($path)
+    public function __construct($path, $data)
     {
-        parent::setUrlOrPath($path);
-        return $this;
+        $this->data = $data;
+        $this->path = $path;
     }
 
     /**
-    * Setting data to be exported
-    * @param array $data, with data
-    * @return array $this->data, with data to be exported
-    */
-    public function setDataToExport(array $data)
-    {
-        
-        try {
-
-            if (!is_array($data)) {
-
-                throw new \Exception ($this->getMessage("Os dados devem estar no formato de array"));
-            }
-
-            if (empty($data)) {
-
-                throw new \Exception ($this->getMessage("Os dados não foram fornecidos"));
-            }
-
-            $this->data = $data;
-            return $this;
-            
-        } catch (\Exception  $e) {
-            
-            echo $e->getMessage();
-
-            exit;
-        }
-
-    }
-
-    /**
-    * Import file and return a message 
+    * Export file and return a message 
     * @return string, an message about the operation status.
     */
-    final public function export()
+    public function export()
     {
+        parent::setUrlOrPath($this->path);
         parent::executeExport($this->data);
         return $this;
     }
-
 
 }

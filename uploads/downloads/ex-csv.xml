@@ -1,23 +1,2 @@
 <?xml version="1.0"?>
-<Users>
-	<user>
-		<name>Nome</name>
-		<age>Idade</age>
-		<role>Fun&#xE7;&#xE3;o</role>
-	</user>
-	<user>
-		<name>Francisco</name>
-		<age>34</age>
-		<role>Developer</role>
-	</user>
-	<user>
-		<name>Anoli</name>
-		<age>37</age>
-		<role>Seller</role>
-	</user>
-	<user>
-		<name>Yanna</name>
-		<age>37</age>
-		<role>Manager</role>
-	</user>
-</Users>
+<Users><user><0>Array</0><1>Array</1><2>Array</2><3>Array</3></user></Users>

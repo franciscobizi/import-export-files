@@ -7,6 +7,7 @@ namespace App\Fbizi;
 * PHP version 7
 * Methods : jsonImport, jsonImport
 * @author Francisco Bizi, <taylorsoft28@gmail.com>
+* @param array $data, array of data to export
 * @copyright Francisco Bizi  
 */
 class Json
@@ -29,20 +30,9 @@ class Json
         
         try {
 
-        	if($curl = curl_init($file)){
+        	if($json = file_get_contents($file)){
 
-                curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-                $json = curl_exec($curl);
-                curl_close($curl);
-                $encoded = json_decode($json);
-                    
-                foreach($encoded->usuarios as $data)
-                {
-                    $arr = ['f_name'=> utf8_decode($data->fname),'l_name'=>  utf8_decode($data->lname)];
-                    //$model->db_import('table',$arr); insert data in database
-                }
-
-                $this->getMessage('Arquivo importado com sucesso!');
+                return $json;
 
             }else{
 

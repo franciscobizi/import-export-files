@@ -1,6 +1,6 @@
 <?php
+
 namespace App\Fbizi;
-use App\Fbizi\UploadsDownloads;
 
 /**
 * Class for importing files as json, xml and csv
@@ -11,15 +11,26 @@ use App\Fbizi\UploadsDownloads;
 */
 class Import extends UploadsDownloads
 {   
+    
+    private $path; 
+    private $result = array();
+
+    use Message;
+
+    public function __construct($path, $data = null)
+    {
+        $this->path = $path;
+    }
 
     /**
-    * Set url with the file name
-    * @param string $url, an url with source file
-    * @return object $this, with url
+    * Import file and return a message 
+    * @return string, an message about the operation status.
     */
-    public function setPathWithFileName($url)
+    public function import()
     {
-        parent::setUrlOrPath($url);
+        parent::setUrlOrPath($this->path);
+        $this->result = parent::executeImport();
+        $this->getMessage("Arquivo importado com successo!");
         return $this;
     }
 
@@ -27,13 +38,9 @@ class Import extends UploadsDownloads
     * Import file and return a message 
     * @return string, an message about the operation status.
     */
-    final public function import()
+    final public function get()
     {
-        
-        parent::executeImport();
-        return $this;
-        
+        return $this->result;
     }
-
 
 }

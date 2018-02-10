@@ -7,6 +7,7 @@ namespace App\Fbizi;
 * PHP version 7
 * Methods : xmlImport, xmlImport
 * @author Francisco Bizi, <taylorsoft28@gmail.com>
+* @param array $data, array of data to export
 * @copyright Francisco Bizi  
 */
 class Xml
@@ -31,20 +32,13 @@ class Xml
     		
 	        if($xml = simplexml_load_file($file)){
 
-				foreach ($xml->dpessoal as $data){
+				return $xml;
 
-				    $arr = ['f_name'=>$data->fname,'l_name'=>$data->lname];
-
-				}
-
-				$this->getMessage('Arquivo importado com sucesso!');
-				
 			}else{
 
 				throw new \Exception($this->getMessage('Arquivo está sendo usado por outro programa!'));	
 			}
-			                   
-	                	
+			                             	
     	} catch (\Exception $e) {
     		
     		$e->getMessage();
@@ -63,19 +57,38 @@ class Xml
 
         try{
 
-				$xml = new \SimpleXMLElement('<Users></Users>');
- 				
+			$xml = new \SimpleXMLElement('<Users></Users>');
+
+			if ($this->isMultiArray($this->data)) {
+					
+				$keys = array_keys($this->data[0]);
+
 				foreach($this->data as $row){
 
 					$user = $xml->addChild('user');
-					$user->addChild("name","{$row['name']}");
-					$user->addChild("age","{$row['age']}");
-					$user->addChild("role","{$row['role']}");
-				}
-				
-				file_put_contents($xmlFileName, $xml->asXML());
 
-				$this->getMessage('Arquivo exportado com sucesso!');
+					foreach ($keys as $key) {
+							
+						$user->addChild("{$key}","{$row[$key]}");
+
+					}
+						
+				}
+
+			}else{
+
+				$user = $xml->addChild('user');
+
+				foreach($this->data as $key => $row){
+
+					$user->addChild("{$key}","{$row}");
+						
+				}
+			}
+ 				
+			file_put_contents($xmlFileName, $xml->asXML());
+
+			$this->getMessage('Arquivo exportado com sucesso!');
 			  	
         }catch(\Exception $e){
 
@@ -84,4 +97,14 @@ class Xml
         }   
         
     }
+	
+	// Checking if array is multi, return true if it is 
+    private function isMultiArray($array) 
+    {
+	    $array = array_filter($array,'is_array');
+
+	    if(count($array) > 0) return true;
+
+	    return false;
+	}
 }

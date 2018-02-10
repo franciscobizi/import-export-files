@@ -12,16 +12,44 @@ $data = [
 
  ];
 
-/*echo "<h1>Exporting file</h1>";
-$export = Builder::create()->build('\Export')
+echo "<h1>Exporting file</h1>";
+
+$export = Builder::create('\Export')
 		->setDataToExport($data)
         ->setPathWithFileName('_DIR_./../../uploads/downloads/ex-csv.xml')
-        ->export();*/
+        ->build();
+
+$export->export();
+
+// Output: A message of confirmation so data were imported successufull.
 
 echo "<h1>Importing file</h1>";
 
-$import = Builder::create()->build('\Import')
+$import = Builder::create('\Import')
            ->setPathWithFileName('_DIR_./../../uploads/testes.csv')
-           ->import();
+           ->build();
+$imported = $import->import()->get();
 
-// Output: A message of confirmation so data were imported successufull.
+
+/*
+#CSV EXEMPLE
+foreach ($imported as $value) {
+            
+    echo $value;
+}
+
+#XML EXEMPLE
+
+foreach ($imported as $value) {
+            
+    echo $value->fname;
+}
+
+#JSON EXEMPLE
+$imported = json_decode($imported);
+foreach ($imported->usuarios as $value) {
+            
+    echo $value->fname;
+}
+*/
+
