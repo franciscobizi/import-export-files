@@ -1,7 +1,7 @@
 {
     "name": "fbizi/import-export-files",
     "type": "library",
-    "description": "Import/Export files",
+    "description": "Import-Export-Files - A simple library to work with Import and Export files as CSV,JSON and XML.",
     "keywords": ["Import","Export"],
     "homepage": "https://github.com/franciscobizi/imporTExport-files",
     "license": "MIT",
