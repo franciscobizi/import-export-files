@@ -1,29 +1,37 @@
 {
     "name": "fbizi/import-export-files",
     "type": "library",
-    "description": "Import-Export-Files - A simple library to work with Import and Export files as CSV,JSON and XML.",
-    "keywords": ["Import","Export"],
+    "description": "Import-Export-Files - A simple library to work with Import and Export files as CSV, JSON and XML.",
+    "keywords": ["Import", "Export", "Files"],
     "homepage": "https://github.com/franciscobizi/imporTExport-files",
     "license": "MIT",
-    "author":{
-      "name":"Francisco Bizi",
-      "email":"taylorsoft28@gmail.com"
-    },
-    "require": {
-        "php": "^7.0"
-    },
     "autoload": {
-        
-      "psr-4": {
-
-        "App\\": "src/"
-      },
-      "classmap": [
-          
-          "tests"
+        "psr-4": {
+            "FBIZI\\IE\\": "src/"
+        },
+        "classmap": [
+            "tests"
         ]
     },
     "require-dev": {
-        "phpunit/phpunit": "^6"
+        "phpunit/phpunit": "^9.5",
+        "squizlabs/php_codesniffer": "^3.6",
+        "enlightn/security-checker": "^1.9",
+        "overtrue/phplint": "^3.0"
+    },
+    "scripts": {
+        "all": ["@test", "@lint", "@check", "@secure"],
+        "check": "phpcs --standard=ruleset.xml",
+        "fix": "phpcbf --standard=ruleset.xml",
+        "test": "phpunit --bootstrap ./vendor/autoload.php --testdox --colors=always",
+        "secure": "security-checker security:check composer.lock",
+        "lint": "phplint lib"
+    },
+    "authors": [{
+        "name": "Francisco Bizi",
+        "role": "Owner | Developer"
+    }],
+    "require": {
+        "php": ">=7.4"
     }
 }
