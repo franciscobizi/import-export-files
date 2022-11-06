@@ -8,7 +8,7 @@ A light library to work with Import and Export files (requires PHP 7.4 +). The i
 Package is available on [Packagist](https://packagist.org/packages/fbizi/import-export-files), you can install it using Composer.
 
 ```composer require fbizi/import-export-files```
- or [download the zip file](https://github.com/franciscobizi/imporTExport-files/archive/master.zip)
+ or [download the zip file](https://github.com/franciscobizi/import-export-files/archive/master.zip)
 
 ## Dependencies
 - PHP 7.4+
@@ -23,13 +23,13 @@ Just use the Importer/Exporter class for work with:
 define("DIR_PATH", "_DIR_./../uploads/");
 require __DIR__ .'/../vendor/autoload.php';
 
-use FBIZI\IE\{Importer, Exporter}; // you can use only depends of your needs
-use FBIZI\IE\Importers\{ // you can use only depends of your needs
+use FBIZI\IE\{Importer, Exporter}; // you can use only one of them depends of your needs
+use FBIZI\IE\Importers\{ // you can use only one of them depends of your needs
     ImportCsv,
     ImportJson,
     ImportXml
 };
-use FBIZI\IE\Exporters\{ // you can use only depends of your needs
+use FBIZI\IE\Exporters\{ // you can use only one of them depends of your needs
     ExportCsv,
     ExportJson,
     ExportXml
