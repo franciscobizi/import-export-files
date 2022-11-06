@@ -16,7 +16,7 @@ Package is available on [Packagist](https://packagist.org/packages/fbizi/import-
 
 ## Basic usage
 ### Importing & Exporting
-Just use the Importer/Exporter class work with:
+Just use the Importer/Exporter class for work with:
 
 ```ruby
 
