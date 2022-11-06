@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
  
-<usuarios>
-  <dpessoal>
+<users_info>
+  <users>
     <fname>Andre</fname>
     <lname>Macundi</lname> 
-  </dpessoal>
-  <dpessoal>
+  </users>
+  <users>
     <fname>Mafuana</fname>
     <lname>Mbanza</lname> 
-  </dpessoal>
-</usuarios>
+  </users>
+</users_info>

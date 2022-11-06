@@ -1,0 +1,1 @@
+{"version":1,"defects":{"Warning":6,"ImportTest::testImportCsv":4},"times":{"Warning":0.004,"ImportTest::testImportCsv":0.012,"Tests\\ImportTest::testImportCsv":0.001,"Tests\\ImportTest::testImportXml":0.001,"Tests\\ImportTest::testImportJson":0.001,"Tests\\ExportTest::testExportCsv":0.007,"Tests\\ExportTest::testExportXml":0.001,"Tests\\ExportTest::testExportJson":0.001}}
