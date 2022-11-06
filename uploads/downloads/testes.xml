@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<root>
+	<object>
+		<name>
+			Francisco Bizi
+		</name>
+		<age>
+			25
+		</age>
+		<phone>
+			788784455
+		</phone>
+	</object>
+	<object>
+		<name>
+			Maria Bizi
+		</name>
+		<age>
+			25
+		</age>
+		<phone>
+			788454455
+		</phone>
+	</object>
+</root>
